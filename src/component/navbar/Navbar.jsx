@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './navbar.scss';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Navbar() {
     const [open, setOpen] = useState(false);
@@ -26,10 +26,10 @@ function Navbar() {
                             alt=""
                         />
                         <span>John Doe</span>
-                        <Link to="/profile" className="profile">
+                        <NavLink to="/profile" className="profile">
                             <div className="notification">3</div>
                             <span>Profile</span>
-                        </Link>
+                        </NavLink>
                     </div>
                 ) : (
                     <>
