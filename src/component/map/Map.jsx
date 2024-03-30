@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import Pin from '../pin/Pin';
 
 import './map.scss';
 
@@ -11,7 +12,7 @@ function Map({ items }) {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             {items.map(item => (
-                <Pin />
+                <Pin item={item} key={item.id} />
             ))}
         </MapContainer>
     );
