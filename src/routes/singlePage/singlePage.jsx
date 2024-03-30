@@ -1,3 +1,4 @@
+import Slider from '../../component/slider/Slider';
 import Map from '../../component/map/Map';
 import { singlePostData, userData } from '../../lib/dummydata';
 
@@ -8,6 +9,7 @@ function SinglePage() {
         <div className="singlePage">
             <div className="details">
                 <div className="wrapper">
+                    <Slider images={singlePostData.images} />
                     <div className="info">
                         <div className="top">
                             <div className="post">
