@@ -1,5 +1,5 @@
+import Navbar from '../../components/navbar/Navbar';
 import { Outlet } from 'react-router-dom';
-import Navbar from '../../component/navbar/Navbar';
 
 import './layout.scss';
 
@@ -16,4 +16,5 @@ function Layout() {
     );
 }
 
-export default Layout;
+
+export { Layout };
