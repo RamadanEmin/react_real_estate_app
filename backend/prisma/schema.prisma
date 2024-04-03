@@ -19,4 +19,5 @@ model User {
   username   String      @unique
   password   String
   avatar     String?
+  createdAt  DateTime    @default(now())
 }
