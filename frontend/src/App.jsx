@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider, } from 'react-router-dom';
-import Layout from './routes/layout/layout';
+import { Layout, RequireAuth } from './routes/layout/layout';
 import HomePage from './routes/homePage/homePage';
 import ListPage from './routes/listPage/listPage';
 import SinglePage from './routes/singlePage/singlePage';
@@ -17,7 +17,7 @@ function App() {
             children: [
                 {
                     path: '/',
-                    element: <HomePage />
+                    element: <HomePage />,
                 },
                 {
                     path: '/list',
@@ -27,28 +27,35 @@ function App() {
                     path: '/:id',
                     element: <SinglePage />
                 },
+
+                {
+                    path: '/login',
+                    element: <Login />
+                },
+                {
+                    path: '/register',
+                    element: <Register />
+                },
+            ],
+        },
+        {
+            path: '/',
+            element: <RequireAuth />,
+            children: [
                 {
                     path: '/profile',
                     element: <ProfilePage />
                 },
                 {
                     path: '/profile/update',
-                    element: <ProfileUpdatePage />,
-                },
-                {
-                    path: '/register',
-                    element: <Register />
-                },
-                {
-                    path: '/login',
-                    element: <Login />
+                    element: <ProfileUpdatePage />
                 },
                 {
                     path: '/add',
-                    element: <NewPostPage />,
+                    element: <NewPostPage />
                 },
-            ]
-        }
+            ],
+        },
     ]);
 
     return (<RouterProvider router={router} />);
