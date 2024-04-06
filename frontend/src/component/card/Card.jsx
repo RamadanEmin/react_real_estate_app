@@ -1,16 +1,16 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './card.scss';
 
 function Card({ item }) {
     return (
         <div className="card">
-            <NavLink to={`/${item.id}`} className="imageContainer">
+            <Link to={`/${item.id}`} className="imageContainer">
                 <img src={item.img} alt="" />
-            </NavLink>
+            </Link>
             <div className="textContainer">
                 <h2 className="title">
-                    <NavLink to={`/${item.id}`}>{item.title}</NavLink>
+                    <Link to={`/${item.id}`}>{item.title}</Link>
                 </h2>
                 <p className="address">
                     <img src="/pin.png" alt="" />
