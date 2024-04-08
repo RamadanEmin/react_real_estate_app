@@ -1,12 +1,12 @@
+import { useContext, useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import Slider from '../../component/slider/Slider';
 import Map from '../../component/map/Map';
-
-import './singlePage.scss';
-import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import apiRequest from '../../lib/apiRequest';
+
+import './singlePage.scss';
 
 function SinglePage() {
     const post = useLoaderData();
