@@ -21,6 +21,25 @@ function Chat({ chats }) {
         }
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const text = formData.get('text');
+
+        if (!text) {
+            return;
+        }
+
+        try {
+            const res = await apiRequest.post('/messages/' + chat.id, { text });
+            setChat((prev) => ({ ...prev, messages: [...prev.messages, res.data] }));
+            e.target.reset();
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <div className="chat">
             <div className="messages">
@@ -72,10 +91,10 @@ function Chat({ chats }) {
                         ))}
                         <div ref={messageEndRef}></div>
                     </div>
-                    <div className="bottom">
-                        <textarea></textarea>
+                    <form onSubmit={handleSubmit} className="bottom">
+                        <textarea name="text"></textarea>
                         <button>Send</button>
-                    </div>
+                    </form>
                 </div>
             )}
         </div>
