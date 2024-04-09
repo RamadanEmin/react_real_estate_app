@@ -1,4 +1,5 @@
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
+import { format } from 'timeago.js';
 import { AuthContext } from '../../context/AuthContext';
 import apiRequest from '../../lib/apiRequest';
 
@@ -7,6 +8,8 @@ import './chat.scss';
 function Chat({ chats }) {
     const [chat, setChat] = useState(null);
     const { currentUser } = useContext(AuthContext);
+
+    const messageEndRef = useRef();
 
     const handleOpenChat = async (id, receiver) => {
         try {
@@ -50,46 +53,24 @@ function Chat({ chats }) {
                         <span className="close" onClick={() => setChat(null)}>X</span>
                     </div>
                     <div className="center">
-                        <div className="chatMessage">
-                            <p>Lorem ipsum dolor sit amet</p>
-                            <span>1 hour ago</span>
-                        </div>
-                        <div className="chatMessage own">
-                            <p>Lorem ipsum dolor sit amet</p>
-                            <span>1 hour ago</span>
-                        </div>
-                        <div className="chatMessage">
-                            <p>Lorem ipsum dolor sit amet</p>
-                            <span>1 hour ago</span>
-                        </div>
-                        <div className="chatMessage own">
-                            <p>Lorem ipsum dolor sit amet</p>
-                            <span>1 hour ago</span>
-                        </div>
-                        <div className="chatMessage">
-                            <p>Lorem ipsum dolor sit amet</p>
-                            <span>1 hour ago</span>
-                        </div>
-                        <div className="chatMessage own">
-                            <p>Lorem ipsum dolor sit amet</p>
-                            <span>1 hour ago</span>
-                        </div>
-                        <div className="chatMessage">
-                            <p>Lorem ipsum dolor sit amet</p>
-                            <span>1 hour ago</span>
-                        </div>
-                        <div className="chatMessage own">
-                            <p>Lorem ipsum dolor sit amet</p>
-                            <span>1 hour ago</span>
-                        </div>
-                        <div className="chatMessage">
-                            <p>Lorem ipsum dolor sit amet</p>
-                            <span>1 hour ago</span>
-                        </div>
-                        <div className="chatMessage own">
-                            <p>Lorem ipsum dolor sit amet</p>
-                            <span>1 hour ago</span>
-                        </div>
+                        {chat.messages.map((message) => (
+                            <div
+                                className="chatMessage"
+                                style={{
+                                    alignSelf:
+                                        message.userId === currentUser.id
+                                            ? 'flex-end'
+                                            : 'flex-start',
+                                    textAlign:
+                                        message.userId === currentUser.id ? 'right' : 'left'
+                                }}
+                                key={message.id}
+                            >
+                                <p>{message.text}</p>
+                                <span>{format(message.createdAt)}</span>
+                            </div>
+                        ))}
+                        <div ref={messageEndRef}></div>
                     </div>
                     <div className="bottom">
                         <textarea></textarea>
